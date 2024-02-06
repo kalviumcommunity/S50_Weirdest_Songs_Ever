@@ -1,11 +1,11 @@
 {
-  "name": "asap-project",
+  "name": "weirdest-songs",
   "version": "1.0.0",
-  "description": " ",
+  "description": "This Website lists some of the most worst and weirdest songs ever created.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Abdulla Shahil",
   "license": "ISC"
 }
