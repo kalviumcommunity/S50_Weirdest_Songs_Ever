@@ -1,15 +1,14 @@
-### S50_Weirdest_Songs_Ever
+# S50_Weirdest_Songs_Ever
 
-# Weirdest Songs Ever
+## Weirdest Songs Ever
 
-## List of the Weirdest Songs Ever
+This website lists some of the weirdest songs ever created. These songs stand out for their weird lyrics, unique sounds, and unusual musical choices, making them a funny and entertaining collection.
 
-This Website lists some of the most worst and weirdest songs ever created. These songs stand out for their weird lyrics, unique sounds, and unusual musical choices, making them a funny and entertaining collection. 
-
-This website allows users to:
-- View other public Posts/lists of weirdest songs ever.
-- Post Songs name into the list.
-- Delete Songs from the list.
-- Light/Dark Theme (Accesibility).
+The website allows users to:
+- View other public posts/lists of the weirdest songs ever.
+- Add song names to the list.
+- Delete songs from the list.
+- Toggle between Light/Dark Themes for accessibility.
 
 Website Link: https://weirdest-songs-ever.onrender.com
+
