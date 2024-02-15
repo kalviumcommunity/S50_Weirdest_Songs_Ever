@@ -1,8 +1,9 @@
 const express = require("express");
-const port = 3003;
+const port = 3000;
 const connectDb = require("./config/database");
 const app = express();
-const router = require("./Routes/userRoute")
+const userRouter = require("./Routes/userRoute")
+const postRouter = require("./Routes/postRoute")
 
 connectDb();
 
@@ -12,7 +13,9 @@ app.get('/ping',(req,res)=>{
 
 app.use(express.json())
 
-app.use("/",router);
+app.use("/",userRouter);
+app.use("/",postRouter);
+
 
 app.listen(port, () => {
 console.log(`🚀 server running on PORT: ${port}`);
