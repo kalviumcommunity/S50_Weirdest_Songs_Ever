@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const userModel = require("../Models/userModel");
+const userModel = require("../../Models/userModel");
 
 // Middleware to parse JSON bodies
 router.use(express.json());
@@ -11,27 +11,10 @@ router.get("/users", async (req, res) => {
         const data = await userModel.find();
         res.json(data);
     } catch (error) {
+        console.error(error);
         res.status(500).json({ message: "Internal server error" });
     }
 });
-
-
-// GET specific users
-router.get("/users/:id", async (req, res) => {
-    const id = req.params.id;
-    try {
-      const data = await userModel.findById(id);
-      if (!data) {
-        return res.status(404).json({ error: "User not found" });
-      }
-      res.json(data);
-    } catch (error) {
-      res.status(500).json({message: "Internal server error" });
-    }
-  });
-
-
-
 
 // POST a new user
 router.post("/users", async (req, res) => {
