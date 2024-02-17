@@ -16,21 +16,6 @@ router.get("/users", async (req, res) => {
     }
 });
 
-// GET each user by id
-router.get("/users/:id", async (req, res) => {
-    const id = req.params.id;
-    try {
-      const data = await userModel.findById(id);
-      if (!data) {
-        return res.status(404).json({ error: "User not found" });
-      }
-      res.json(data);
-    } catch (error) {
-      res.status(500).json({message: "Internal server error" });
-    }
-  });
-
-
 // POST a new user
 router.post("/users", async (req, res) => {
     try {
