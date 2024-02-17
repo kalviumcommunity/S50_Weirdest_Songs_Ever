@@ -11,7 +11,13 @@ function Home() {
             <p>This website showcases a curated selection of some of the most weirdest and unconventional songs ever produced. These tracks are distinguished by their eccentric lyrics, distinct melodies, and unconventional musical arrangements, offering a humorous and captivating assortment of offbeat musical experiences for visitors to enjoy.</p>
         </div>
 
-        <hr className='mt-5'/>
+
+        <div className='buttons mt-5'>
+        <button className='btn login '>Login</button>
+          <button className='btn signup'>Sign up</button>
+        </div>
+
+        <hr className='mt-10'/>
 
         <div className='social-links w-30 flex justify-around mt-5 p-1'>
                 <Link to='https://github.com/abdullashahil'><img className='social-logo h-8 mr-1' src={Github} alt=""/></Link>
