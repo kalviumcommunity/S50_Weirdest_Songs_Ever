@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const userModel = require("../Models/userModel");
+const postModel = require("../Models/postModel");
 
 // Middleware to parse JSON bodies
 router.use(express.json());
 
-// GET all users
-router.get("/users", async (req, res) => {
+// GET all posts
+router.get("/posts", async (req, res) => {
     try {
-        const data = await userModel.find();
+        const data = await postModel.find();
         res.json(data);
     } catch (error) {
         res.status(500).json({ message: "Internal server error" });
@@ -16,11 +16,11 @@ router.get("/users", async (req, res) => {
 });
 
 
-// GET specific users
-router.get("/users/:id", async (req, res) => {
+// GET specific posts
+router.get("/posts/:id", async (req, res) => {
     const id = req.params.id;
     try {
-      const data = await userModel.findById(id);
+      const data = await postModel.findById(id);
       if (!data) {
         return res.status(404).json({ error: "User not found" });
       }
@@ -33,10 +33,10 @@ router.get("/users/:id", async (req, res) => {
 
 
 
-// POST a new user
-router.post("/users", async (req, res) => {
+// POST a new post
+router.post("/posts", async (req, res) => {
     try {
-        const data = await userModel.create(req.body);
+        const data = await postModel.create(req.body);
         res.status(201).json(data);
     } catch (error) {
         console.error(error);
@@ -44,10 +44,10 @@ router.post("/users", async (req, res) => {
     }
 });
 
-// PUT to update a user
-router.put("/users/:id", async (req, res) => {
+// PUT to update a post
+router.put("/posts/:id", async (req, res) => {
     try {
-        const updatedUser = await userModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        const updatedUser = await postModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!updatedUser) {
             return res.status(404).json({ message: "User not found" });
         }
@@ -58,10 +58,10 @@ router.put("/users/:id", async (req, res) => {
     }
 });
 
-// PATCH to partially update a user
-router.patch("/users/:id", async (req, res) => {
+// PATCH to partially update a post
+router.patch("/posts/:id", async (req, res) => {
     try {
-        const updatedUser = await userModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        const updatedUser = await postModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!updatedUser) {
             return res.status(404).json({ message: "User not found" });
         }
@@ -72,10 +72,10 @@ router.patch("/users/:id", async (req, res) => {
     }
 });
 
-// DELETE a user
-router.delete("/users/:id", async (req, res) => {
+// DELETE a post
+router.delete("/posts/:id", async (req, res) => {
     try {
-        const deletedUser = await userModel.findByIdAndDelete(req.params.id);
+        const deletedUser = await postModel.findByIdAndDelete(req.params.id);
         if (!deletedUser) {
             return res.status(404).json({ message: "User not found" });
         }
