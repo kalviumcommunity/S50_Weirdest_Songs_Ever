@@ -1,6 +1,6 @@
 const express = require("express");
 const port = 3000;
-const connectDb = require("../config/database");
+const connectDb = require("../Back-end/config/database");
 const app = express();
 const userRouter = require("./Routes/userRoute")
 const postRouter = require("./Routes/postRoute")
