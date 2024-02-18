@@ -12,7 +12,7 @@ router.get("/users", async (req, res) => {
         res.json(data);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: "500-Internal server error" });
     }
 });
 
@@ -26,7 +26,7 @@ router.get("/users/:id", async (req, res) => {
       }
       res.json(data);
     } catch (error) {
-      res.status(500).json({message: "500 - Internal server error" });
+      res.status(500).json({message: "500-Internal server error" });
     }
   });
 
@@ -37,7 +37,7 @@ router.post("/users", async (req, res) => {
         res.status(201).json(data);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: "500-Internal server error" });
     }
 });
 
@@ -51,7 +51,7 @@ router.put("/users/:id", async (req, res) => {
         res.json(updatedUser);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: "500-Internal server error" });
     }
 });
 
@@ -65,7 +65,7 @@ router.patch("/users/:id", async (req, res) => {
         res.json(updatedUser);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: "500-Internal server error" });
     }
 });
 
@@ -79,7 +79,7 @@ router.delete("/users/:id", async (req, res) => {
         res.json({ message: "User deleted successfully" });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: "500-Internal server error" });
     }
 });
 
