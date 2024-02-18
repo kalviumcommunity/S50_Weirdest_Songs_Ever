@@ -16,7 +16,7 @@ router.get("/users", async (req, res) => {
     }
 });
 
-// GET each user by id
+// GET each user by ID
 router.get("/users/:id", async (req, res) => {
     const id = req.params.id;
     try {
