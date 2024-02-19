@@ -12,4 +12,4 @@ This website allows users to:
 - Delete Songs from the list.
 - Light/Dark Theme (Accesibility).
 
-### Website Link: https://weirdest-songs-ever.onrender.com
+### Deployed Website Link: https://weirdest-songs-ever.onrender.com
