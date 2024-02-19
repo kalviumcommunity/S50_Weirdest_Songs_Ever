@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const userModel = require("../../Models/userModel");
+const userModel = require("../Models/userModel");
 
 // Middleware to parse JSON bodies
 router.use(express.json());
@@ -16,7 +16,7 @@ router.get("/users", async (req, res) => {
     }
 });
 
-// GET each user
+// GET each user by ID
 router.get("/users/:id", async (req, res) => {
     const id = req.params.id;
     try {
@@ -26,9 +26,10 @@ router.get("/users/:id", async (req, res) => {
       }
       res.json(data);
     } catch (error) {
-      res.status(500).json({message: "500-Internal server error" });
+      res.status(500).json({message: "Internal server error" });
     }
   });
+
 
 // POST a new user
 router.post("/users", async (req, res) => {
@@ -37,7 +38,7 @@ router.post("/users", async (req, res) => {
         res.status(201).json(data);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: "500-Internal server error" });
+        res.status(500).json({ message: "Internal server error" });
     }
 });
 
@@ -51,7 +52,7 @@ router.put("/users/:id", async (req, res) => {
         res.json(updatedUser);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: "500-Internal server error" });
+        res.status(500).json({ message: "Internal server error" });
     }
 });
 
@@ -65,7 +66,7 @@ router.patch("/users/:id", async (req, res) => {
         res.json(updatedUser);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: "500-Internal server error" });
+        res.status(500).json({ message: "Internal server error" });
     }
 });
 
@@ -79,7 +80,7 @@ router.delete("/users/:id", async (req, res) => {
         res.json({ message: "User deleted successfully" });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: "500-Internal server error" });
+        res.status(500).json({ message: "Internal server error" });
     }
 });
 

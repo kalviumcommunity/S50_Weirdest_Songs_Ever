@@ -1,10 +1,6 @@
 const express = require("express");
 const router = express.Router();
-<<<<<<< HEAD:Routes/postRoute.js
 const postModel = require("../Models/postModel");
-=======
-const userModel = require("../../Models/userModel");
->>>>>>> ad1b53d584bdc1dfd5c41cf925a7bcb3b10a5f95:Back-end/Routes/postRoute.js
 
 // Middleware to parse JSON bodies
 router.use(express.json());
@@ -15,7 +11,7 @@ router.get("/posts", async (req, res) => {
         const data = await postModel.find();
         res.json(data);
     } catch (error) {
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: "500-Internal server error" });
     }
 });
 
@@ -24,15 +20,15 @@ router.get("/posts", async (req, res) => {
 router.get("/posts/:id", async (req, res) => {
     const id = req.params.id;
     try {
-        const data = await postModel.findById(id);
-        if (!data) {
-            return res.status(404).json({ error: "User not found" });
-        }
-        res.json(data);
+      const data = await postModel.findById(id);
+      if (!data) {
+        return res.status(404).json({ error: "User not found" });
+      }
+      res.json(data);
     } catch (error) {
-        res.status(500).json({ message: "Internal server error" });
+      res.status(500).json({message: "Internal server error" });
     }
-});
+  });
 
 
 
@@ -48,42 +44,42 @@ router.post("/posts", async (req, res) => {
     }
 });
 
-// PUT to update a Post
+// PUT to update a post
 router.put("/posts/:id", async (req, res) => {
     try {
-        const updatedPost = await postModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        if (!updatedPost) {
-            return res.status(404).json({ message: "Post not found" });
+        const updatedUser = await postModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        if (!updatedUser) {
+            return res.status(404).json({ message: "User not found" });
         }
-        res.json(updatedPost);
+        res.json(updatedUser);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Internal server error" });
     }
 });
 
-// PATCH to partially update a Post
+// PATCH to partially update a post
 router.patch("/posts/:id", async (req, res) => {
     try {
-        const updatedPost = await postModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        if (!updatedPost) {
-            return res.status(404).json({ message: "Post not found" });
+        const updatedUser = await postModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        if (!updatedUser) {
+            return res.status(404).json({ message: "User not found" });
         }
-        res.json(updatedPost);
+        res.json(updatedUser);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Internal server error" });
     }
 });
 
-// DELETE a Post
+// DELETE a post
 router.delete("/posts/:id", async (req, res) => {
     try {
-        const deletedPost = await postModel.findByIdAndDelete(req.params.id);
-        if (!deletedPost) {
-            return res.status(404).json({ message: "Post not found" });
+        const deletedUser = await postModel.findByIdAndDelete(req.params.id);
+        if (!deletedUser) {
+            return res.status(404).json({ message: "User not found" });
         }
-        res.json({ message: "Post deleted successfully" });
+        res.json({ message: "User deleted successfully" });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Internal server error" });
