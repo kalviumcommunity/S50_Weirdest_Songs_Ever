@@ -11,7 +11,7 @@ router.get("/posts", async (req, res) => {
         const data = await postModel.find();
         res.json(data);
     } catch (error) {
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: "500-Internal server error" });
     }
 });
 
