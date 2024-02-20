@@ -1,28 +1,129 @@
-import { Routes, Route, Link } from 'react-router-dom'
-import Github from '../../assets/github.png'
-import Linkedin from '../../assets/linkedin.png'
+import Logo from '../../assets/WSLogo.png'
+import LogoW from '../../assets/WSLogowhite.png'
+import axios from 'axios'
+import postData from '../Postdata.json'
+import profileImg from '../../assets/profile.png'
+import { useEffect, useState } from 'react'
+
+
 
 function Home() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/posts')
+      .then(response => {
+        setUsers(response.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
+  // console.log(users)
+
+
   return (
-    <div className='main'>
+    <div>
 
-        <h1 className='title mt-12'>Weirdest Songs Ever</h1>
-        <div className='description mt-10'>
-            <p>This website showcases a curated selection of some of the most weirdest and unconventional songs ever produced. These tracks are distinguished by their eccentric lyrics, distinct melodies, and unconventional musical arrangements, offering a humorous and captivating assortment of offbeat musical experiences for visitors to enjoy.</p>
+      <div className="nav h-20 flex justify-center items-center border">
+        <img className='logo h-10' src={LogoW} alt="" />
+      </div>
+
+
+      <div className="panels flex justify-around  ">
+
+        <div className='left-panel m-12  '>
+
+          <div className="add-post flex justify-between items-center ">
+
+            <div className="add-btn  w-16 h-16 rounded-full">
+              <button
+                className="plus rounded-full text-white text-md cursor-pointer outline-none hover:rotate-90 duration-300"
+                title="Add New"
+              >+</button>
+            </div>
+
+            <h1 className='create-title'>Create new post</h1>
+
+          </div>
+
+
+          <div className="category-panel mt-10 border border-grey shadow-md p-8 rounded-md">
+            <ul className='cm-panel category-list  text-left '>
+              <li className='rounded'><button className=''>Home</button></li>
+              <li className='rounded'><button className=''>Manage Posts</button></li>
+              <li className='rounded'><button className=''>Settings</button></li>
+            </ul>
+          </div>
+
         </div>
 
 
-        <div className='buttons mt-5'>
-        <button className='btn login '>Login</button>
-          <button className='btn signup'>Sign up</button>
+
+        <div className='main-panel m-12 '>
+          {/* {postData.map((data, index) => {
+            return (
+
+              <div className="posts border flex flex-col mb-10 p-10" key={index}>
+                <h1 className='post-title font-bold'>{data['Song Title']}</h1>
+                <h3 className='post-username mb-5'>{data.Username}</h3>
+                <iframe width="540" height="304" src={data['Image/Video']} title="video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <div className="post-options bg-gray-700 rounded text-white p-3 flex items-center  justify-between  mt-5">
+
+                  <h1>Artist: {data.Artist}</h1>
+                  <h1>Release Year: {data['Release Year']}</h1>
+
+                </div>
+
+              </div>
+            )
+          })} */}
+
+
+          {users.map((data, index) => {
+            return (
+
+              <div className="posts border flex flex-col mb-10 p-10" key={index}>
+                <h1 className='post-title font-bold'>{data['Song Title']}</h1>
+                <h3 className='post-username mb-5'>{data.Username}</h3>
+                <iframe width="540" height="304" src={data['Image/Video']} title="video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <div className="post-options bg-gray-700 rounded text-white p-3 flex items-center  justify-between  mt-5">
+
+                  <h1>Artist: {data.Artist}</h1>
+                  <h1>Release Year: {data['Release Year']}</h1>
+
+                </div>
+
+              </div>
+            )
+          })}
+
         </div>
 
-        <hr className='mt-10'/>
+        <div className="right-panel m-12  ">
 
-        <div className='social-links w-30 flex justify-around mt-5 p-1'>
-                <Link to='https://github.com/abdullashahil'><img className='social-logo h-8 mr-1' src={Github} alt=""/></Link>
-    <Link to='https://www.linkedin.com/in/abdullashahil/'><img className='social-logo h-8 ml-1' src={Linkedin} alt="" /></Link>
+          <div className="cm-panel profile-panel bg-white border shadow-md p-8 boder rounded-md flex items-center justify-between h-20">
+
+            <div className='profile-img-name  flex items-center justify-around  '>
+              <div className="profile-img w-14 h-14 rounded-full flex justify-center items-center overflow-hidden">
+                <img src={profileImg} alt="Img" />
+              </div>
+              <h1 className='profile-name '>johnson</h1>
+            </div>
+
+            <button className='logout-stroke text-red-500' alt='logout'>-</button>
+
+          </div>
+
+
+
         </div>
+
+      </div>
+
+
+
 
     </div>
   )

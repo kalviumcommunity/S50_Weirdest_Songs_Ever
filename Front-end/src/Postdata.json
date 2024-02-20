@@ -1,0 +1,112 @@
+[
+    {
+      "_id": "65cde083ef05fe3f839fbe7f",
+      "POST ID": 2,
+      "Song Title": "PPAP",
+      "Username": "johndoe",
+      "Artist": "Pikotaro",
+      "Release Year": 2016,
+      "Image/Video": "https://www.youtube.com/embed/Ct6BUPvE2sM",
+      "Genre": "J-Pop",
+      "Quirkiness Level": "High"
+    },
+    {
+      "_id": "65cde083ef05fe3f839fbe81",
+      "POST ID": 4,
+      "Song Title": "The Coconut Song",
+      "Username": "coolguy88",
+      "Artist": "Smokey Mountain",
+      "Release Year": 2010,
+      "Image/Video": "https://www.youtube.com/embed/w0AOGeqOnFY?si=KDDA4fUwITdddEqr",
+      "Genre": "Novelty",
+      "Quirkiness Level": "High"
+    },
+    {
+      "_id": "65cde083ef05fe3f839fbe86",
+      "POST ID": 9,
+      "Song Title": "Timothy",
+      "Username": "superboy1",
+      "Artist": "The Buoys",
+      "Release Year": 1971,
+      "Image/Video": "https://www.youtube.com/embed/AXn0uIF60iU?si=3xtl9sNdBkjhukUe",
+      "Genre": "Pop Rock",
+      "Quirkiness Level": "Extreme"
+    },
+    {
+      "_id": "65cde083ef05fe3f839fbe83",
+      "POST ID": 6,
+      "Song Title": "Surfin' Bird",
+      "Username": "lisa5",
+      "Artist": "The Trashmen",
+      "Release Year": 1963,
+      "Image/Video": "https://www.youtube.com/embed/9Gc4QTqslN4?si=PczrK5HxR94Yv56l",
+      "Genre": "Surf Rock",
+      "Quirkiness Level": "High"
+    },
+    {
+      "_id": "65cde083ef05fe3f839fbe85",
+      "POST ID": 8,
+      "Song Title": "Birdhouse in Your Soul",
+      "Username": "shahil123",
+      "Artist": "They Might Be Giants",
+      "Release Year": 1990,
+      "Image/Video": "https://www.youtube.com/embed/vn_or9gEB6g?si=kTk9zgl_SHsICidj",
+      "Genre": "Alternative",
+      "Quirkiness Level": "High"
+    },
+    {
+      "_id": "65cde083ef05fe3f839fbe84",
+      "POST ID": 7,
+      "Song Title": "Psycho Chicken",
+      "Username": "ali5252",
+      "Artist": "The Fools",
+      "Release Year": 1980,
+      "Image/Video": "https://www.youtube.com/embed/UnBlst3T7bY?si=8GvCkf3gVozTl765",
+      "Genre": "Comedy Rock",
+      "Quirkiness Level": "High"
+    },
+    {
+      "_id": "65cde083ef05fe3f839fbe7e",
+      "POST ID": 1,
+      "Song Title": "Dame Tu Cosita",
+      "Username": "user123",
+      "Artist": "El Chombo feat Cutty Ranks",
+      "Release Year": 1997,
+      "Image/Video": "https://www.youtube.com/embed/FzG4uDgje3M?si=F_VGX0dbLDlDvdgR",
+      "Genre": "Reggaeton",
+      "Quirkiness Level": "High"
+    },
+    {
+      "_id": "65cde083ef05fe3f839fbe87",
+      "POST ID": 10,
+      "Song Title": "Disco Duck",
+      "Username": "don2323",
+      "Artist": "Rick Dees",
+      "Release Year": 1976,
+      "Image/Video": "https://www.youtube.com/embed/ynWhozyOoZQ?si=67_YbR4n3oCkZvbb",
+      "Genre": "Disco",
+      "Quirkiness Level": "High"
+    },
+    {
+      "_id": "65cde083ef05fe3f839fbe80",
+      "POST ID": 3,
+      "Song Title": "Chicken Song",
+      "Username": "alice_w",
+      "Artist": "J. Geco/The Chickies",
+      "Release Year": 2013,
+      "Image/Video": "https://www.youtube.com/embed/msSc7Mv0QHY?si=GdcF2CdwtUai-69m",
+      "Genre": "Electronic Dance Music",
+      "Quirkiness Level": "High"
+    },
+    {
+      "_id": "65cde083ef05fe3f839fbe82",
+      "POST ID": 5,
+      "Song Title": "They're Coming to Take Me Away, Ha-Haaa!",
+      "Username": "jack",
+      "Artist": "Napoleon XIV",
+      "Release Year": 1966,
+      "Image/Video": "https://www.youtube.com/embed/eQNI1KfGXBA?si=PZjb-jX4PBxPzbsp",
+      "Genre": "Novelty",
+      "Quirkiness Level": "Extreme"
+    }
+  ]
