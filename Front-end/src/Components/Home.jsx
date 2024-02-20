@@ -1,12 +1,28 @@
 import Logo from '../../assets/WSLogo.png'
 import LogoW from '../../assets/WSLogowhite.png'
-
+import axios from 'axios'
 import postData from '../Postdata.json'
 import profileImg from '../../assets/profile.png'
+import { useEffect, useState } from 'react'
 
 
 
 function Home() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/posts')
+      .then(response => {
+        setUsers(response.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
+  // console.log(users)
+
+
   return (
     <div>
 
@@ -46,7 +62,7 @@ function Home() {
 
 
         <div className='main-panel m-12 '>
-          {postData.map((data, index) => {
+          {/* {postData.map((data, index) => {
             return (
 
               <div className="posts border flex flex-col mb-10 p-10" key={index}>
@@ -57,13 +73,32 @@ function Home() {
 
                   <h1>Artist: {data.Artist}</h1>
                   <h1>Release Year: {data['Release Year']}</h1>
-                  {/* <button>Like</button> */}
+
+                </div>
+
+              </div>
+            )
+          })} */}
+
+
+          {users.map((data, index) => {
+            return (
+
+              <div className="posts border flex flex-col mb-10 p-10" key={index}>
+                <h1 className='post-title font-bold'>{data['Song Title']}</h1>
+                <h3 className='post-username mb-5'>{data.Username}</h3>
+                <iframe width="540" height="304" src={data['Image/Video']} title="video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <div className="post-options bg-gray-700 rounded text-white p-3 flex items-center  justify-between  mt-5">
+
+                  <h1>Artist: {data.Artist}</h1>
+                  <h1>Release Year: {data['Release Year']}</h1>
 
                 </div>
 
               </div>
             )
           })}
+
         </div>
 
         <div className="right-panel m-12  ">
@@ -74,7 +109,7 @@ function Home() {
               <div className="profile-img w-14 h-14 rounded-full flex justify-center items-center overflow-hidden">
                 <img src={profileImg} alt="Img" />
               </div>
-              <h1 className='profile-name '>marques</h1>
+              <h1 className='profile-name '>johnson</h1>
             </div>
 
             <button className='logout-stroke text-red-500' alt='logout'>-</button>

@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const port = 3000;
 const connectDb = require("../Back-end/config/database");
 const app = express();
@@ -6,6 +7,8 @@ const userRouter = require("./Routes/userRoute")
 const postRouter = require("./Routes/postRoute")
 
 connectDb();
+
+app.use(cors())
 
 app.get('/ping',(req,res)=>{
   res.send("Message: Pong")
