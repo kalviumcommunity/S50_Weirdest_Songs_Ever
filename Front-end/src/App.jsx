@@ -1,5 +1,6 @@
-import { Routes, Route, Link } from 'react-router-dom'
-import Home from './Components/Home'
+import { Routes, Route } from 'react-router-dom';
+import Landing from './Components/Landing';
+import Home from './Components/Home';
 import './App.css'
 
 function App() {
@@ -8,7 +9,8 @@ function App() {
     <>
 
     <Routes>
-      <Route path='/' element={<Home/>}/>
+      <Route path='/' element={<Landing/>}/>
+      <Route path='/home' element={<Home/>}/>
     </Routes>
       
     </>

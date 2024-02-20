@@ -1,0 +1,20 @@
+meta {
+  name: POST
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:3000/users/
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "username": "DANIEL",
+    "email": "  daniel@example.com",
+    "password": "daniel123",
+    "registrationDate": "2022-02-12"
+  }
+}

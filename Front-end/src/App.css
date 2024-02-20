@@ -2,12 +2,14 @@
 
 html,
 body {
+  box-sizing: border-box;
   background-image: url('../assets/template.png');
   background-size: cover;
   background-color: rgb(244, 244, 244);
   font-family: 'Poppins', sans-serif;
   text-align: center;
 }
+
 
 .main {
   display: flex;
@@ -16,7 +18,7 @@ body {
 }
 
 .title {
-  background-image: linear-gradient(to right, rgb(247, 127, 16), rgb(247, 99, 15));
+  background-image: linear-gradient(to right, #f77f10, #f7630f);
   background-clip: text;
   color: transparent;
   font-size: 100px;
@@ -86,4 +88,124 @@ hr {
   border: 1px solid white;
 }
 
+/* home */
 
+.nav{
+  background: linear-gradient( to bottom right, #ff6c47, #ffa763) ;
+
+}
+
+
+.panels {
+  overflow: hidden;
+  height: 90vh;
+}
+
+
+.main-panel {
+  width: 50%;
+  height: 100vh;
+  overflow: scroll;
+}
+
+.left-panel {
+  width: 20%;
+
+}
+
+.right-panel {
+  width: 20%;
+}
+
+.add-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient( to bottom right, #ff6c47, #ffa763) ;
+  overflow: hidden;
+}
+
+.plus {
+  font-size: 35px;
+  padding: 40%;
+}
+
+.add-post {
+  width: 14.5rem;
+  /* border: 1px solid red; */
+}
+
+.create-title {
+  font-size: 18px;
+}
+
+
+/* left panel */
+
+.category-panel {
+  height: 60%;
+  background-color: rgb(254, 254, 254);
+
+}
+
+.category-list {
+  font-size: 18px;
+  line-height: 3rem;
+}
+
+.category-list li{
+  margin-bottom: 0.5rem;
+padding-left: 1rem;
+transition: 0.3s;
+}
+
+.category-list li:hover{
+  cursor: pointer;
+  background-color: rgb(238, 238, 238);
+  padding-left: 1rem;
+  }
+
+/* main panel */
+
+.posts {
+  background-color: rgb(252, 252, 252);
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.post-title {
+  text-align: left;
+  font-size: 22px;
+}
+
+.post-username {
+  text-align: left;
+  font-size: 12px;
+}
+
+/* right panel */
+
+.profile-img{
+  border: 2px solid transparent;
+  background: linear-gradient( to bottom right, #ff7e5f, #feb47b) ;
+  border-radius: 50%;
+}
+
+.profile-img-name{
+  width: 10rem;
+  margin-left: -1rem;  
+}
+
+.profile-panel{
+  
+  /* border: 1px solid red; */
+}
+
+.logout-stroke{
+  margin-left: 10px;
+  font-size: 30px;
+}
+
+.post-options{
+  background: linear-gradient( to bottom right, #ff6c47, #ffa763) ;
+}
