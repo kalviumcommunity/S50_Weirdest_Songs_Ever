@@ -1,17 +1,25 @@
-import Logo from '../../assets/WSLogo.png'
 import LogoW from '../../assets/WSLogowhite.png'
 import axios from 'axios'
-import postData from '../Postdata.json'
 import profileImg from '../../assets/profile.png'
+import personalIng from '../../assets/personalprof.png'
 import { useEffect, useState } from 'react'
 
 
 
 function Home() {
+  const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     axios.get('http://localhost:3000/posts')
+      .then(response => {
+        setPosts(response.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+      axios.get('http://localhost:3000/users')
       .then(response => {
         setUsers(response.data);
       })
@@ -26,9 +34,9 @@ function Home() {
   return (
     <div>
 
-      <div className="nav h-20 flex justify-center items-center border">
+      <nav className="nav h-20 flex justify-center items-center border">
         <img className='logo h-10' src={LogoW} alt="" />
-      </div>
+      </nav>
 
 
       <div className="panels flex justify-around  ">
@@ -62,36 +70,19 @@ function Home() {
 
 
         <div className='main-panel m-12 '>
-          {/* {postData.map((data, index) => {
+
+
+          {posts.map((data, index) => {
             return (
 
               <div className="posts border flex flex-col mb-10 p-10" key={index}>
                 <h1 className='post-title font-bold'>{data['Song Title']}</h1>
                 <h3 className='post-username mb-5'>{data.Username}</h3>
-                <iframe width="540" height="304" src={data['Image/Video']} title="video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe width="540" height="304" src={data['Image/Video']} title="video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                 <div className="post-options bg-gray-700 rounded text-white p-3 flex items-center  justify-between  mt-5">
 
-                  <h1>Artist: {data.Artist}</h1>
-                  <h1>Release Year: {data['Release Year']}</h1>
-
-                </div>
-
-              </div>
-            )
-          })} */}
-
-
-          {users.map((data, index) => {
-            return (
-
-              <div className="posts border flex flex-col mb-10 p-10" key={index}>
-                <h1 className='post-title font-bold'>{data['Song Title']}</h1>
-                <h3 className='post-username mb-5'>{data.Username}</h3>
-                <iframe width="540" height="304" src={data['Image/Video']} title="video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                <div className="post-options bg-gray-700 rounded text-white p-3 flex items-center  justify-between  mt-5">
-
-                  <h1>Artist: {data.Artist}</h1>
-                  <h1>Release Year: {data['Release Year']}</h1>
+                  <h1>Artist: <strong>{data.Artist}</strong></h1>
+                  <h1>Release Year: <strong>{data['Release Year']}</strong></h1>
 
                 </div>
 
@@ -101,29 +92,50 @@ function Home() {
 
         </div>
 
-        <div className="right-panel m-12  ">
+        <div className="right-panel m-12 overflow-hidden ">
 
-          <div className="cm-panel profile-panel bg-white border shadow-md p-8 boder rounded-md flex items-center justify-between h-20">
 
-            <div className='profile-img-name  flex items-center justify-around  '>
-              <div className="profile-img w-14 h-14 rounded-full flex justify-center items-center overflow-hidden">
-                <img src={profileImg} alt="Img" />
-              </div>
-              <h1 className='profile-name '>johnson</h1>
-            </div>
+        <div className="mb-5 cm-panel  profile-panel bg-white border shadow-md p-8 boder rounded-md flex items-center justify-between h-20">
 
-            <button className='logout-stroke text-red-500' alt='logout'>-</button>
+<div className="profile-img w-14 h-14 rounded-full flex justify-center items-center overflow-hidden">
+        <img src={personalIng} className='h-20 w-20' alt="Img" />
+      </div>
+    <div className='profile-img-name  flex items-center justify-between  '>
 
-          </div>
+      <h1 className='profile-name '>Shahil</h1>
+    </div>
 
+    <button className='logout-stroke text-red-500' alt='logout'>-</button>
+
+  </div>
+
+  <center>
+  <hr className='bg-gray mt-6 mb-6 w-3/4' />
+  <h1 className='suggestion-title mb-6'>Suggested for you</h1>
+</center>
+
+<div className=' suggestion-scroll h-3/4 overflow-scroll p-2   rounded-lg  '>
+  {users.map((user, index) => {
+    return (
+      <div key={index} className="mb-5 cm-panel profile-panel bg-white border  p-8 boder rounded-md flex items-center justify-between h-20">
+        <div className="profile-img w-14 h-14 rounded-full flex justify-center items-center overflow-hidden">
+          <img src={profileImg} alt="Img" />
+        </div>
+        <div className='profile-img-name flex items-center justify-between'>
+          <h1 className='profile-name ml-2'>{user.username}</h1>
+        </div>
+        <button className='logout-stroke text-blue-500 ' alt='logout'>+</button>
+      </div>
+    )
+  })}
+
+
+</div>
 
 
         </div>
 
       </div>
-
-
-
 
     </div>
   )

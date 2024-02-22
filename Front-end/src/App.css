@@ -92,7 +92,7 @@ hr {
 
 .nav{
   background: linear-gradient( to bottom right, #ff6c47, #ffa763) ;
-
+height: 10vh;
 }
 
 
@@ -183,29 +183,126 @@ transition: 0.3s;
   font-size: 12px;
 }
 
+
+
 /* right panel */
 
 .profile-img{
+  /* background-image: url('../assets/profile.png); */
+  margin-left: -10px;
   border: 2px solid transparent;
   background: linear-gradient( to bottom right, #ff7e5f, #feb47b) ;
   border-radius: 50%;
 }
 
 .profile-img-name{
-  width: 10rem;
+  width: 4rem;
   margin-left: -1rem;  
 }
 
-.profile-panel{
-  
+.profile-name{
+  max-width: 11rem;
+  /* overflow: hidden; */
+  text-align: left;
   /* border: 1px solid red; */
 }
 
 .logout-stroke{
   margin-left: 10px;
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .post-options{
   background: linear-gradient( to bottom right, #ff6c47, #ffa763) ;
+}
+.suggestion-title{
+  font-weight: 500;
+}
+
+
+
+
+
+/* forms */
+
+
+.form-main{
+  height: 90vh;
+  /* border: 1px solid red; */
+
+}
+
+
+.register-head {
+  font-size: 20px;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+}
+
+form {
+  border: 2px solid rgb(152, 152, 152);
+  border-radius: 20px;
+  background-color: rgb(255, 255, 255);
+  padding: 30px;
+  width: 500px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.submit-btn {
+  margin-top: -5px;
+  height: 50px;
+  background-image: linear-gradient( to bottom right, #ff6c47, #ffa763) ;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: rgb(58, 58, 58);
+  cursor: pointer;
+}
+
+.form-input {
+  margin-bottom: -15px;
+  height: 50px;
+  background-color: rgb(252, 252, 252);
+  color: rgb(0, 0, 0);
+  border: 1px solid rgb(85, 85, 85);
+  border-radius: 3px;
+  padding: 15px;
+}
+
+.form-input::placeholder {
+  font-size: 14px;
+  opacity: 0.2;
+}
+
+label {
+  font-size: 14px;
+  margin-top: 12px;
+  text-align: left;
+  color: black;
+}
+
+.error-span {
+  margin-top: -5px;
+  color: red;
+  text-align: left;
+  font-size: 12px;
+}
+
+.error-terms {
+  margin-top: -15px;
+  color: red;
+  text-align: left;
+  font-size: 12px;
+}
+
+.suggestion-scroll{
+  background-color: rgb(252, 252, 252);
+  border: 1px solid rgb(249, 249, 249);
 }
