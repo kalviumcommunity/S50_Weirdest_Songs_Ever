@@ -91,7 +91,7 @@ hr {
 /* home */
 
 .nav{
-  background: linear-gradient( to bottom right, #ff6c47, #ffa763) ;
+  background: linear-gradient(to right, #f77f10, #f7630f);
 height: 10vh;
 }
 
@@ -121,7 +121,7 @@ height: 10vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient( to bottom right, #ff6c47, #ffa763) ;
+  background: linear-gradient(to right, #f77f10, #f7630f);
   overflow: hidden;
 }
 
@@ -191,7 +191,7 @@ transition: 0.3s;
   /* background-image: url('../assets/profile.png); */
   margin-left: -10px;
   border: 2px solid transparent;
-  background: linear-gradient( to bottom right, #ff7e5f, #feb47b) ;
+  background: linear-gradient(to right, #f77f10, #f7630f);
   border-radius: 50%;
 }
 
@@ -202,9 +202,12 @@ transition: 0.3s;
 
 .profile-name{
   max-width: 11rem;
-  /* overflow: hidden; */
   text-align: left;
   /* border: 1px solid red; */
+}
+
+.user-name{
+  margin-left: 15px;
 }
 
 .logout-stroke{
@@ -213,7 +216,7 @@ transition: 0.3s;
 }
 
 .post-options{
-  background: linear-gradient( to bottom right, #ff6c47, #ffa763) ;
+  background: linear-gradient(to right, #f77f10, #f7630f);
 }
 .suggestion-title{
   font-weight: 500;
@@ -252,9 +255,10 @@ form {
 }
 
 .submit-btn {
+  
   margin-top: -5px;
   height: 50px;
-  background-image: linear-gradient( to bottom right, #ff6c47, #ffa763) ;
+  background: linear-gradient(to right, #f77f10, #f7630f);
   color: white;
   font-size: 17px;
   font-weight: bold;
@@ -262,7 +266,7 @@ form {
 }
 
 .submit-btn:hover {
-  background-color: rgb(58, 58, 58);
+  background: linear-gradient(to bottom right, #f18e32, #ec7028);
   cursor: pointer;
 }
 
@@ -305,4 +309,114 @@ label {
 .suggestion-scroll{
   background-color: rgb(252, 252, 252);
   border: 1px solid rgb(249, 249, 249);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  backdrop-filter: blur(5px); /* Add blur effect to the background */
+  z-index: 999; /* Ensure the overlay stays on top */
+  pointer-events: auto; /* Allow pointer events on the overlay */
+}
+
+.logout-popup {
+  background-color: white;
+  height: 20%;
+  width: 30%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+.delete-popup{
+  padding: 6rem;
+}
+
+.logout-popup h2{
+  font-size: 20px;
+}
+
+.toggle-switch {
+  rotate: 180deg;
+  /* border: 1px solid red; */
+  left: 14px;
+  position: relative;
+  top: 11px;
+  display: inline-block;
+  width: 40px;
+  height: 24px;
+  margin: 10px;
+}
+
+.toggle-switch .toggle-input {
+  display: none;
+}
+
+.toggle-switch .toggle-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 24px;
+  background-color: #4CAF50;
+  border-radius: 34px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.toggle-switch .toggle-label::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  background-color: #fff;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s;
+}
+
+.toggle-switch .toggle-input:checked + .toggle-label {
+  background-color: #f31a1a;
+
+}
+
+.toggle-switch .toggle-input:checked + .toggle-label::before {
+  transform: translateX(16px);
+}
+
+
+.update-img{
+  /* margin-left: -10px; */
+  border: 2px solid transparent;
+  background: linear-gradient(to right, #f77f10, #f7630f);
+  border-radius: 50%;
+}
+
+.save-btn{
+  width: 13.5rem;
+}
+
+
+.edit-icon{
+  position: absolute;
+  /* bottom: 2rem; */
+  left: 32.5em;
+  /* background-color: #f31a1a; */
+
+}
+
+.delete-btn{
+  width: 100%;
+  background: rgb(228, 35, 35);
+}
+.delete-btn:hover{
+  background: rgb(245, 73, 73);
 }
