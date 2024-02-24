@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from 'react-router-dom'
+import Cookies from 'js-cookie';
 import axios from 'axios'
 
 import LogoW from '../../assets/WSLogowhite.png'

@@ -117,7 +117,7 @@ function Update() {
                             maxLength: { value: 30, message: 'Maximum length is 20 characters' }
                         })} value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your Email address" id="email" disabled={!isEditable} />
                         <br />
-                        {/* {errors.email && <span className="error-span">{errors.email.message}</span>} */}
+                        {errors.email && <span className="error-span">{errors.email.message}</span>}
 
 
                         <label htmlFor="password">Password</label>
@@ -131,7 +131,7 @@ function Update() {
                             }
                         })} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your Password" type="password" id="password" disabled={!isEditable} />
                         <br />
-                        {/* {errors.password && <span className="error-span">{errors.password.message}</span>} */}
+                        {errors.password && <span className="error-span">{errors.password.message}</span>}
 
 
 
