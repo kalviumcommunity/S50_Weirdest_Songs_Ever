@@ -13,8 +13,8 @@ function Landing() {
 
 
       <div className='buttons mt-5'>
-        <Link to='/home'><button className='btn login '>Login</button></Link>
-        <Link to='./signup'><button className='btn signup'>Sign up</button></Link>
+        <Link to='/login'><button className='btn login rounded'>Login</button></Link>
+        <Link to='./signup'><button className='btn signup rounded'>Sign up</button></Link>
       </div>
 
       <hr className='mt-10' />

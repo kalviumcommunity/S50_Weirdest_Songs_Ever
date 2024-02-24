@@ -1,37 +1,33 @@
 import { useState } from "react";
-import { useForm, useWatch } from "react-hook-form";
-import { Link, useNavigate } from 'react-router-dom';
-import LogoW from '../../assets/WSLogowhite.png'
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie';
-import axios from 'axios';
+import axios from 'axios'
 
+import LogoW from '../../assets/WSLogowhite.png'
 
-function Signup() {
+function Login() {
 
-    const { register, handleSubmit, formState: { errors }, watch } = useForm();
-    const [users, setUsers] = useState([]);
     const [isSubmitted, setIsSubmitted] = useState(false);
-
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
-    const checkPassword = watch('password', '');
-
 
     const onSubmit = data => {
         const { username, email, password, repeatPassword } = data;
-        setUsers(users.data);
+        // setUsers(users.data);
 
-        axios.post('http://localhost:3000/users', { username, email, password, repeatPassword })
-            .then(response => {
-                console.log(response);
-
-                const dataString = JSON.stringify(response.data);
-                Cookies.set('data', dataString);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-
+        // axios.post('http://localhost:3000/users', { username, email, password, repeatPassword })
+        // .then(data => {
+        //     console.log(data);
+        // })
+        // .catch(error => {
+        //     console.error(error);
+        // });
+        // console.log(data);
         setIsSubmitted(true);
+
+        Cookies.set('username', username);
+        Cookies.set('email', email);
 
         setTimeout(() => {
             navigate('/home');
@@ -39,11 +35,16 @@ function Signup() {
         )
 
     };
+
+
+
     return (
-        <div className="">
+        <div>
             <nav className="nav  flex justify-center items-center border  ">
                 <img className='logo h-10' src={LogoW} alt="" />
             </nav>
+
+
             <div className="form-main   flex flex-col justify-center items-center ">
 
 
@@ -54,7 +55,7 @@ function Signup() {
                             <div className="pop p-3 bg-green-500 text-white  rounded mb-5"><p className="registered-heading">Account created successfully</p></div>
                         )}
 
-                        <h2 className="register-head">Create an Account</h2>
+                        <h2 className="register-head">Login to your account</h2>
 
 
                         <label htmlFor="username">User name</label>
@@ -68,7 +69,7 @@ function Signup() {
 
 
 
-                        <label htmlFor="email">Email</label>
+                        {/* <label htmlFor="email">Email</label>
                         <input className="form-input" {...register('email', {
                             required: 'This Field is required',
                             pattern: { value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, message: 'Invalid email' },
@@ -76,10 +77,10 @@ function Signup() {
                             maxLength: { value: 30, message: 'Maximum length is 20 characters' }
                         })} placeholder="Enter your Email address" id="email" />
                         <br />
-                        {errors.email && <span className="error-span">{errors.email.message}</span>}
+                        {errors.email && <span className="error-span">{errors.email.message}</span>} */}
 
 
-                        <label htmlFor="password">New Password</label>
+                        <label htmlFor="password">Password</label>
                         <input className="form-input" {...register('password', {
                             required: 'This Field is required',
                             minLength: { value: 10, message: 'Minimum 10 characters are required' },
@@ -93,34 +94,12 @@ function Signup() {
                         {errors.password && <span className="error-span">{errors.password.message}</span>}
 
 
-                        <label htmlFor="repeat-password">Re-enter the Password</label>
-                        <input
-                            className="form-input"
-                            {...register('repeatPassword', {
-                                required: 'This Field is required',
-                                validate: value => value === checkPassword || 'Your Password do not match',
-                            })}
-                            placeholder="Re-enter the Password"
-                            type="password"
-                            id="repeatPassword"
-                        />
-                        <br />
-                        {errors.repeatPassword && <span className="error-span">{errors.repeatPassword.message}</span>}
 
 
-                        <label className="terms" htmlFor="terms">
-                            <input
-                                type="checkbox"
-                                id="terms"
-                                {...register('terms', { required: 'You must accept the terms and conditions' })}
-                            />
-                            &nbsp;&nbsp;Accept <span className="  underline">Terms and Conditions</span>
-                        </label>
-                        <br />
-                        {errors.terms && <span className="error-terms" >{errors.terms.message}</span>}
+
 
                         <br />
-                        <button className="submit-btn rounded">Signup</button>
+                        <button className="submit-btn rounded">Login</button>
 
                     </form>
 
@@ -129,9 +108,10 @@ function Signup() {
                 </center>
 
 
+
             </div>
         </div>
     )
 }
 
-export default Signup
+export default Login
