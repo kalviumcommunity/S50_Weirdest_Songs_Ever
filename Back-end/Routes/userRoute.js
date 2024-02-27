@@ -1,9 +1,54 @@
 const express = require("express");
 const router = express.Router();
 const userModel = require("../Models/userModel");
+const Joi = require("joi");
 
-// Middleware to parse JSON bodies
 router.use(express.json());
+
+const userJoiSchema = Joi.object({
+    username: Joi.string().alphanum().min(3).max(30).required(),
+    email: Joi.string().email().required(),
+    password: Joi.string().required(),
+    repeatPassword: Joi.string().valid(Joi.ref('password')).required().strict()
+});
+
+const putUserJoiSchema = Joi.object({
+    username: Joi.string().alphanum().min(3).max(30),
+    email: Joi.string().email(),
+    password: Joi.string(),
+    repeatPassword: Joi.string().valid(Joi.ref('password')).strict()
+}).min(1);
+
+const patchUserJoiSchema = Joi.object({
+    username: Joi.string().alphanum().min(3).max(30),
+    email: Joi.string().email(),
+    password: Joi.string(),
+    repeatPassword: Joi.string().valid(Joi.ref('password')).strict()
+}).min(1);
+
+function validateUser(req, res, next) {
+    const { error } = userJoiSchema.validate(req.body);
+    if (error) {
+        return res.status(400).json({ error: error.details[0].message });
+    }
+    next();
+}
+
+function validatePutUser(req, res, next) {
+    const { error } = putUserJoiSchema.validate(req.body);
+    if (error) {
+        return res.status(400).json({ error: error.details[0].message });
+    }
+    next();
+}
+
+function validatePatchUser(req, res, next) {
+    const { error } = patchUserJoiSchema.validate(req.body);
+    if (error) {
+        return res.status(400).json({ error: error.details[0].message });
+    }
+    next();
+}
 
 // GET all users
 router.get("/users", async (req, res) => {
@@ -20,19 +65,18 @@ router.get("/users", async (req, res) => {
 router.get("/users/:id", async (req, res) => {
     const id = req.params.id;
     try {
-      const data = await userModel.findById(id);
-      if (!data) {
-        return res.status(404).json({ error: "User not found" });
-      }
-      res.json(data);
+        const data = await userModel.findById(id);
+        if (!data) {
+            return res.status(404).json({ error: "User not found" });
+        }
+        res.json(data);
     } catch (error) {
-      res.status(500).json({message: "Internal server error" });
+        res.status(500).json({ message: "Internal server error" });
     }
-  });
-
+});
 
 // POST a new user
-router.post("/users", async (req, res) => {
+router.post("/users", validateUser, async (req, res) => {
     try {
         const data = await userModel.create(req.body);
         res.status(201).json(data);
@@ -43,7 +87,7 @@ router.post("/users", async (req, res) => {
 });
 
 // PUT to update a user
-router.put("/users/:id", async (req, res) => {
+router.put("/users/:id", validatePutUser, async (req, res) => {
     try {
         const updatedUser = await userModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!updatedUser) {
@@ -57,7 +101,7 @@ router.put("/users/:id", async (req, res) => {
 });
 
 // PATCH to partially update a user
-router.patch("/users/:id", async (req, res) => {
+router.patch("/users/:id", validatePatchUser, async (req, res) => {
     try {
         const updatedUser = await userModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!updatedUser) {
