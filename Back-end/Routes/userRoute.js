@@ -12,7 +12,19 @@ const userJoiSchema = Joi.object({
     repeatPassword: Joi.string().valid(Joi.ref('password')).required().strict()
 });
 
+const putUserJoiSchema = Joi.object({
+    username: Joi.string().alphanum().min(3).max(30),
+    email: Joi.string().email(),
+    password: Joi.string(),
+    repeatPassword: Joi.string().valid(Joi.ref('password')).strict()
+}).min(1);
 
+const patchUserJoiSchema = Joi.object({
+    username: Joi.string().alphanum().min(3).max(30),
+    email: Joi.string().email(),
+    password: Joi.string(),
+    repeatPassword: Joi.string().valid(Joi.ref('password')).strict()
+}).min(1);
 
 function validateUser(req, res, next) {
     const { error } = userJoiSchema.validate(req.body);
@@ -22,8 +34,21 @@ function validateUser(req, res, next) {
     next();
 }
 
+function validatePutUser(req, res, next) {
+    const { error } = putUserJoiSchema.validate(req.body);
+    if (error) {
+        return res.status(400).json({ error: error.details[0].message });
+    }
+    next();
+}
 
-
+function validatePatchUser(req, res, next) {
+    const { error } = patchUserJoiSchema.validate(req.body);
+    if (error) {
+        return res.status(400).json({ error: error.details[0].message });
+    }
+    next();
+}
 
 // GET all users
 router.get("/users", async (req, res) => {
@@ -62,7 +87,7 @@ router.post("/users", validateUser, async (req, res) => {
 });
 
 // PUT to update a user
-router.put("/users/:id", validateUser, async (req, res) => {
+router.put("/users/:id", validatePutUser, async (req, res) => {
     try {
         const updatedUser = await userModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!updatedUser) {
@@ -76,7 +101,7 @@ router.put("/users/:id", validateUser, async (req, res) => {
 });
 
 // PATCH to partially update a user
-router.patch("/users/:id", validateUser, async (req, res) => {
+router.patch("/users/:id", validatePatchUser, async (req, res) => {
     try {
         const updatedUser = await userModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!updatedUser) {
