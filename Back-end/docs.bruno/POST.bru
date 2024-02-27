@@ -5,16 +5,20 @@ meta {
 }
 
 post {
-  url: http://localhost:3000/users/
+  url: http://localhost:3000/posts/
   body: json
   auth: none
 }
 
 body:json {
   {
-    "username": "DANIEL",
-    "email": "  daniel@example.com",
-    "password": "daniel123",
-    "repeatPassword": "daniel123"
+      "postID": 11,
+    "songTitle": "testingjoy",
+    "username": "hihi",
+    "artist": "looooiss",
+    "releaseYear": "ff",
+    "imageVideo": "https://chat.openai.com/c/adcf5a67-282f-422d-acb8-bab55ee162e4",
+    "genre": "pop",
+    "quirkinessLevel": "high"
   }
 }
