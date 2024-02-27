@@ -18,10 +18,9 @@ function Home() {
   const cookieUserData = Cookies.get('data');
   const userData = JSON.parse(cookieUserData);
   
-  console.log(userData.username);
-
   const handleLogout = () => {
     Cookies.remove('data');
+    Cookies.remove('email');
     setUsername('');
 
     console.log('logout')

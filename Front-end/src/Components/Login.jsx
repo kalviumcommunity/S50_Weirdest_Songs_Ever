@@ -12,30 +12,35 @@ function Login() {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
 
-    const onSubmit = data => {
-        const { username, email, password, repeatPassword } = data;
-        // setUsers(users.data);
-
-        // axios.post('http://localhost:3000/users', { username, email, password, repeatPassword })
-        // .then(data => {
-        //     console.log(data);
-        // })
-        // .catch(error => {
-        //     console.error(error);
-        // });
-        // console.log(data);
+    const onSubmit = (data) => {
+        const { email, password } = data;
         setIsSubmitted(true);
+        axios.get('http://localhost:3000/users')
+            .then(response => {
+                const users = response.data;
+                const matchedUser = users.find(user => user.email === email && user.password === password);
 
-        Cookies.set('username', username);
-        Cookies.set('email', email);
+                if (matchedUser) {
 
-        setTimeout(() => {
-            navigate('/home');
-        }, 1000
-        )
+                    const dataString = JSON.stringify(matchedUser);
+                    Cookies.set('data', dataString);
+                    Cookies.set('email', email);
 
+                    console.log('success')
+                    setTimeout(() => {
+                        setIsSubmitted(true);
+                        navigate('/home');
+                    }, 1000);
+
+                } else {
+                    setIsSubmitted(false);
+                    console.log("Invalid email or password");
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            });
     };
-
 
 
     return (
@@ -52,24 +57,15 @@ function Login() {
                     <form className="" onSubmit={handleSubmit(onSubmit)}>
 
                         {isSubmitted && !Object.keys(errors).length && (
-                            <div className="pop p-3 bg-green-500 text-white  rounded mb-5"><p className="registered-heading">Account created successfully</p></div>
+                            <div className="pop p-3 bg-green-500 text-white  rounded mb-5">
+                                <p className="registered-heading">Login successful</p>
+                            </div>
                         )}
 
                         <h2 className="register-head">Login to your account</h2>
 
 
-                        <label htmlFor="username">User name</label>
-                        <input className="form-input" {...register('username', {
-                            required: 'This Field is required',
-                            minLength: { value: 5, message: 'Minimum 5 characters are required' },
-                            maxLength: { value: 10, message: 'Maximum length is 10 characters' }
-                        })} placeholder="Create your User Name" id="username" />
-                        <br />
-                        {errors.username && <span className="error-span">{errors.username.message}</span>}
-
-
-
-                        {/* <label htmlFor="email">Email</label>
+                        <label htmlFor="email">Email</label>
                         <input className="form-input" {...register('email', {
                             required: 'This Field is required',
                             pattern: { value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, message: 'Invalid email' },
@@ -77,7 +73,7 @@ function Login() {
                             maxLength: { value: 30, message: 'Maximum length is 20 characters' }
                         })} placeholder="Enter your Email address" id="email" />
                         <br />
-                        {errors.email && <span className="error-span">{errors.email.message}</span>} */}
+                        {errors.email && <span className="error-span">{errors.email.message}</span>}
 
 
                         <label htmlFor="password">Password</label>
@@ -92,10 +88,6 @@ function Login() {
                         })} placeholder="Enter your Password" type="password" id="password" />
                         <br />
                         {errors.password && <span className="error-span">{errors.password.message}</span>}
-
-
-
-
 
 
                         <br />
