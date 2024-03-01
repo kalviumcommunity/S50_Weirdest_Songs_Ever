@@ -15,12 +15,12 @@ function Home() {
   const [username, setUsername] = useState('');
   const navigate = useNavigate()
 
-  const cookieUserData = Cookies.get('data');
-  const userData = JSON.parse(cookieUserData);
-  
+  const cookieUserData = Cookies.get('userData');
+  const userData = cookieUserData ? JSON.parse(cookieUserData) : null;
+  console.log(userData)
   const handleLogout = () => {
     Cookies.remove('data');
-    Cookies.remove('email');
+    Cookies.remove('token');
     setUsername('');
 
     console.log('logout')
@@ -43,7 +43,6 @@ function Home() {
       .catch(err => {
         console.log(err);
       });
-
 
 
     axios.get('http://localhost:3000/users')

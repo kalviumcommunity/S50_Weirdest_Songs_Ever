@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie';
 import axios from 'axios'
 
@@ -21,7 +21,6 @@ function Login() {
                 const matchedUser = users.find(user => user.email === email && user.password === password);
 
                 if (matchedUser) {
-
                     const dataString = JSON.stringify(matchedUser);
                     Cookies.set('data', dataString);
                     Cookies.set('email', email);

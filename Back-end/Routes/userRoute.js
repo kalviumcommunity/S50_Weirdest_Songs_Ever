@@ -2,8 +2,14 @@ const express = require("express");
 const router = express.Router();
 const userModel = require("../Models/userModel");
 const Joi = require("joi");
+const jwt = require("jsonwebtoken");
+require('dotenv').config()
 
 router.use(express.json());
+
+const generateToken = (user) => {
+    return jwt.sign({name: user.username}, process.env.SECRET_KEY, { expiresIn: "1h"})
+}
 
 const userJoiSchema = Joi.object({
     username: Joi.string().alphanum().min(3).max(30).required(),
@@ -78,13 +84,16 @@ router.get("/users/:id", async (req, res) => {
 // POST a new user
 router.post("/users", validateUser, async (req, res) => {
     try {
-        const data = await userModel.create(req.body);
-        res.status(201).json(data);
+        const userData = req.body;
+        const newUser = await userModel.create(userData);
+        const token = generateToken(newUser);
+        res.status(201).json({ userData: newUser, token: token });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Internal server error" });
     }
 });
+
 
 // PUT to update a user
 router.put("/users/:id", validatePutUser, async (req, res) => {

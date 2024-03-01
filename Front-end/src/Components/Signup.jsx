@@ -24,8 +24,9 @@ function Signup() {
             .then(response => {
                 console.log(response);
 
-                const dataString = JSON.stringify(response.data);
-                Cookies.set('data', dataString);
+                const { userData, token } = response.data;
+                Cookies.set('userData', JSON.stringify(userData));
+                Cookies.set('token', token, { expires: 1 });
             })
             .catch(error => {
                 console.error(error);
