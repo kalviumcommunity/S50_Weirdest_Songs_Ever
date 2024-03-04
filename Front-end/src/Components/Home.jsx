@@ -57,6 +57,9 @@ function Home() {
     }
   }, [selectedUser, posts]);
 
+  const uniqueUsernames = Array.from(new Set(posts.map(post => post.username)));
+
+
   return (
     <div>
       <nav className="nav h-20 flex justify-center items-center border">
@@ -84,19 +87,12 @@ function Home() {
         </div>
 
         <div className='main-panel m-12 '>
-          <select className='border border-gray-400 rounded px-2 py-4' id="genreSelect" onChange={(e) => setSelectedUser(e.target.value)}>
+        <select className='border border-gray-400 rounded px-2 py-4' id="genreSelect" onChange={(e) => setSelectedUser(e.target.value)}>
             <option value="">Select the creator </option>
             <option value="All">All</option>
-            <option value="johndoe">johndoe</option>
-            <option value="user123">user123</option>
-            <option value="alice_w">alice_w</option>
-            <option value="coolguy88">coolguy88</option>
-            <option value="jack">jack</option>
-            <option value="lisa5">lisa5</option>
-            <option value="ali5252">ali5252</option>
-            <option value="shahil123">shahil123</option>
-            <option value="superboy1">superboy1</option>
-            <option value="don2323">don2323</option>
+            {uniqueUsernames.map(username => (
+              <option key={username} value={username}>{username}</option>
+            ))}
           </select>
 
           {filteredPosts.map((data, index) => {
