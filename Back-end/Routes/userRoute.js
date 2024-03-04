@@ -94,6 +94,26 @@ router.post("/users", validateUser, async (req, res) => {
     }
 });
 
+// POST a new user
+// router.post("/users", validateUser, async (req, res) => {
+//     try {
+//         const { email, password } = req.body;
+//         const user = await userModel.findOne({ email });
+//         if (!user || user.password !== password) {
+//             return res.status(401).json({ message: "Invalid email or password" });
+//         }
+
+//         // Generate JWT token
+//         const token = generateToken(user);
+        
+//         res.status(200).json({ message: "Login successful", token });
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ message: "Internal server error" });
+//     }
+// });
+
+
 
 // PUT to update a user
 router.put("/users/:id", validatePutUser, async (req, res) => {
