@@ -30,6 +30,9 @@ function Update() {
             }).catch(err => {
                 console.log(err);
             });
+
+        Cookies.remove('token');
+        Cookies.remove('userData');
         navigate('/')
     }
 
