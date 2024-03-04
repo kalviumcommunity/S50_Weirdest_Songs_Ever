@@ -17,10 +17,8 @@ function Home() {
 
   const cookieUserData = Cookies.get('userData');
   const userData = cookieUserData ? JSON.parse(cookieUserData) : null;
-  console.log(userData)
 
   const handleLogout = () => {
-    // Cookies.remove('data');
     Cookies.remove('token');
     Cookies.remove('userData');
     setUsername('');
