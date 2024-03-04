@@ -22,8 +22,7 @@ function Login() {
 
                 if (matchedUser) {
                     const dataString = JSON.stringify(matchedUser);
-                    Cookies.set('data', dataString);
-                    Cookies.set('email', email);
+                    Cookies.set('userData', dataString);
 
                     console.log('success')
                     setTimeout(() => {
