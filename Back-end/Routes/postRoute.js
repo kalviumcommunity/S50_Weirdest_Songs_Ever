@@ -6,37 +6,31 @@ const Joi = require("joi");
 router.use(express.json());
 
 const postJoiSchema = Joi.object({
-  postID: Joi.number().integer().min(0).required(),
   songTitle: Joi.string().required(),
   username: Joi.string().required(),
   artist: Joi.string().required(),
   releaseYear: Joi.number().integer().min(1900).max(new Date().getFullYear()),
   imageVideo: Joi.string().uri(),
   genre: Joi.string(),
-  quirkinessLevel: Joi.string()
 });
 
 const putJoiSchema = Joi.object({
-  postID: Joi.number().integer().min(0),
   songTitle: Joi.string().required(),
   username: Joi.string(),
   artist: Joi.string().required(),
   releaseYear: Joi.number().integer().min(1900).max(new Date().getFullYear()),
   imageVideo: Joi.string().uri(),
   genre: Joi.string(),
-  quirkinessLevel: Joi.string()
 });
 
 const patchJoiSchema = Joi.object({
-  postID: Joi.number().integer().min(0),
   songTitle: Joi.string(),
   username: Joi.string(),
   artist: Joi.string(),
   releaseYear: Joi.number().integer().min(1900).max(new Date().getFullYear()),
   imageVideo: Joi.string().uri(),
   genre: Joi.string(),
-  quirkinessLevel: Joi.string()
-}).min(1); // At least one field is required for PATCH
+}).min(1);
 
 function validatePost(req, res, next) {
   const { error } = postJoiSchema.validate(req.body);

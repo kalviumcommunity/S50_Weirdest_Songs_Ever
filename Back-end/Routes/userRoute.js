@@ -8,7 +8,7 @@ require('dotenv').config()
 router.use(express.json());
 
 const generateToken = (user) => {
-    return jwt.sign({name: user.username}, process.env.SECRET_KEY, { expiresIn: "1h"})
+    return jwt.sign({ name: user.username }, process.env.SECRET_KEY, { expiresIn: "1h" })
 }
 
 const userJoiSchema = Joi.object({
@@ -67,6 +67,7 @@ router.get("/users", async (req, res) => {
     }
 });
 
+
 // GET each user by ID
 router.get("/users/:id", async (req, res) => {
     const id = req.params.id;
@@ -81,6 +82,7 @@ router.get("/users/:id", async (req, res) => {
     }
 });
 
+
 // POST a new user
 router.post("/users", validateUser, async (req, res) => {
     try {
@@ -93,26 +95,6 @@ router.post("/users", validateUser, async (req, res) => {
         res.status(500).json({ message: "Internal server error" });
     }
 });
-
-// POST a new user
-// router.post("/users", validateUser, async (req, res) => {
-//     try {
-//         const { email, password } = req.body;
-//         const user = await userModel.findOne({ email });
-//         if (!user || user.password !== password) {
-//             return res.status(401).json({ message: "Invalid email or password" });
-//         }
-
-//         // Generate JWT token
-//         const token = generateToken(user);
-        
-//         res.status(200).json({ message: "Login successful", token });
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ message: "Internal server error" });
-//     }
-// });
-
 
 
 // PUT to update a user
@@ -128,6 +110,7 @@ router.put("/users/:id", validatePutUser, async (req, res) => {
         res.status(500).json({ message: "Internal server error" });
     }
 });
+
 
 // PATCH to partially update a user
 router.patch("/users/:id", validatePatchUser, async (req, res) => {

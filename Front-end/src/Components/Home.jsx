@@ -69,19 +69,21 @@ function Home() {
       <div className="panels flex justify-around">
         <div className='left-panel m-12  '>
           <div className="add-post flex justify-between items-center ">
+            <Link to='/create'>
             <div className="add-btn  w-16 h-16 rounded-full">
               <button
                 className="plus rounded-full text-white text-md cursor-pointer outline-none hover:rotate-90 duration-300"
                 title="Add New"
               >+</button>
             </div>
+            </Link>
             <h1 className='create-title'>Create new post</h1>
           </div>
           <div className="category-panel mt-10 border border-grey shadow-md p-8 rounded-md">
             <ul className='cm-panel category-list  text-left '>
               <li className='rounded'><button className=''>Home</button></li>
               <li className='rounded'><button className=''>Manage Posts</button></li>
-              <li className='rounded'><button className=''>Settings</button></li>
+              <li className='rounded'><Link to={`/update/${userData._id}`}><button className=''>Account Settings</button></Link></li>
             </ul>
           </div>
         </div>
