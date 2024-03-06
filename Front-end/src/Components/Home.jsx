@@ -82,7 +82,7 @@ function Home() {
           <div className="category-panel mt-10 border border-grey shadow-md p-8 rounded-md">
             <ul className='cm-panel category-list  text-left '>
               <li className='rounded'><button className=''>Home</button></li>
-              <li className='rounded'><button className=''>Manage Posts</button></li>
+              <li className='rounded'><Link to='/posts'><button className=''>Manage Posts</button></Link></li>
               <li className='rounded'><Link to={`/update/${userData._id}`}><button className=''>Account Settings</button></Link></li>
             </ul>
           </div>

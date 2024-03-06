@@ -5,8 +5,10 @@ import Signup from './Components/Signup';
 import Login from './Components/Login';
 import Update from './Components/Update';
 import Create from './Components/Create';
+import UpdatePost from './Components/UpdatePost'
 
 import './App.css'
+import ManagePosts from './Components/ManagePosts';
 
 function App() {
 
@@ -21,6 +23,8 @@ function App() {
       <Route path='/login' element={<Login/>}/>
       <Route path='/update/:id' element={<Update/>}/>
       <Route path='/create' element={<Create/>}/>
+      <Route path='/posts' element={<ManagePosts/>}/>
+      <Route path='/edit/:id' element={<UpdatePost/>}/>
     </Routes>
       
     </>
