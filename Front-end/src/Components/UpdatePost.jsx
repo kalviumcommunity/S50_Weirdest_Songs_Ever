@@ -16,6 +16,16 @@ function UpdatePost() {
     const cookieUserData = Cookies.get('userData');
     const userData = cookieUserData ? JSON.parse(cookieUserData) : null;
 
+    const getEmbeddedVideoUrl = (videoLink) => {
+        if (videoLink.includes('youtu.be')) {
+            const videoId = videoLink.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/)?.[1];
+            if (videoId) {
+                return `https://www.youtube.com/embed/${videoId}`;
+            }
+        }
+        return videoLink;
+    };
+
     useEffect(() => {
         axios.get(`http://localhost:3000/posts/${id}`)
             .then(response => {
@@ -33,12 +43,13 @@ function UpdatePost() {
 
     const onSubmit = data => {
         const { songTitle, artist, releaseYear, imageVideo, genre } = data;
-        const updatedPost = { songTitle, artist, releaseYear, imageVideo, genre };
-
+        const embeddedVideoUrl = getEmbeddedVideoUrl(imageVideo);
+        const updatedPost = { songTitle, artist, releaseYear, imageVideo: embeddedVideoUrl, genre };
+    
         axios.put(`http://localhost:3000/posts/${id}`, updatedPost)
             .then(response => {
                 console.log(response);
-                setIsSubmitted(true); // Set isSubmitted to true upon successful submission
+                setIsSubmitted(true); 
                 setTimeout(() => {
                     navigate('/posts');
                 }, 1000);
@@ -47,7 +58,7 @@ function UpdatePost() {
                 console.error(error);
             });
     };
-
+    
 
     return (
         <div>
@@ -78,12 +89,12 @@ function UpdatePost() {
                 <div className='main-panel main-panel2 '>
                     <center>
                         <h2 className="register-head mb-5">Update Post</h2>
-
+                        {/* Success message */}
                         {isSubmitted && !Object.keys(errors).length && (
                             <div className="pop w-3/4 p-3 bg-green-500 text-white  rounded mb-5"><p className="registered-heading">Updated successfully</p></div>
                         )}
-
                         <form className="rounded-md w-3/4" onSubmit={handleSubmit(onSubmit)}>
+                            {/* Form fields */}
                             <label htmlFor="songTitle">Song Title</label>
                             <input
                                 className="form-input"
@@ -97,7 +108,7 @@ function UpdatePost() {
                             />
                             {errors.songTitle && <span className="error-span">{errors.songTitle.message}</span>}
                             <br />
-
+                            {/* Other form fields */}
                             <label htmlFor="artist">Artist</label>
                             <input
                                 className="form-input"
@@ -111,7 +122,6 @@ function UpdatePost() {
                             />
                             {errors.artist && <span className="error-span">{errors.artist.message}</span>}
                             <br />
-
                             <label htmlFor="releaseYear">Released Year</label>
                             <input
                                 className="form-input"
@@ -125,7 +135,6 @@ function UpdatePost() {
                             />
                             {errors.releaseYear && <span className="error-span">{errors.releaseYear.message}</span>}
                             <br />
-
                             <label htmlFor="imageVideo">Image/Video URL</label>
                             <input
                                 className="form-input"
@@ -135,10 +144,12 @@ function UpdatePost() {
                                 })}
                                 placeholder="Enter the Image/Video Link"
                                 id="imageVideo"
+                                onBlur={(e) => {
+                                    e.target.value = getEmbeddedVideoUrl(e.target.value);
+                                }}
                             />
                             {errors.imageVideo && <span className="error-span">{errors.imageVideo.message}</span>}
                             <br />
-
                             <label htmlFor="genre">Genre</label>
                             <input
                                 className="form-input"
@@ -151,7 +162,6 @@ function UpdatePost() {
                             />
                             {errors.genre && <span className="error-span">{errors.genre.message}</span>}
                             <br />
-
                             <button className="submit-btn rounded">Update</button>
                         </form>
                     </center>
