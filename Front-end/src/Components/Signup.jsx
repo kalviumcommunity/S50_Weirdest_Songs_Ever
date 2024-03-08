@@ -20,7 +20,7 @@ function Signup() {
         const { username, email, password, repeatPassword } = data;
         setUsers(users.data);
 
-        axios.post('http://localhost:3000/users', { username, email, password, repeatPassword })
+        axios.post('https://s50-weirdest-songs-ever-1.onrender.com/users', { username, email, password, repeatPassword })
             .then(response => {
                 console.log(response);
 

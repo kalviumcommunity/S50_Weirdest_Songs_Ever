@@ -30,7 +30,7 @@ function Create() {
     const onSubmit = data => {
         const { songTitle, artist, releaseYear, imageVideo, genre } = data;
         const embeddedVideoUrl = getEmbeddedVideoUrl(imageVideo);
-        axios.post('http://localhost:3000/posts', { 
+        axios.post('https://s50-weirdest-songs-ever-1.onrender.com/posts', { 
             songTitle, 
             username: userData.username, 
             artist, 

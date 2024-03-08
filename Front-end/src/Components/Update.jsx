@@ -22,7 +22,7 @@ function Update() {
     const navigate = useNavigate();
 
     const handleDelete = (id) => {
-        axios.delete('http://localhost:3000/users/' + id)
+        axios.delete('https://s50-weirdest-songs-ever-1.onrender.com/users/' + id)
             .then(response => {
                 console.log(response)
                 Cookies.remove('data');
@@ -37,7 +37,7 @@ function Update() {
     }
 
     useEffect(() => {
-        axios.get('http://localhost:3000/users/' + id)
+        axios.get('https://s50-weirdest-songs-ever-1.onrender.com/users/' + id)
             .then(response => {
                 setUsers(response.data);
                 console.log(response.data)
@@ -53,7 +53,7 @@ function Update() {
         const { username, email, password } = data;
         setUsers(users.data);
 
-        axios.put('http://localhost:3000/users/' + id, { username, email, password })
+        axios.put('https://s50-weirdest-songs-ever-1.onrender.com/users/' + id, { username, email, password })
             .then(response => {
                 console.log(response);
                 const dataString = JSON.stringify(response.data);

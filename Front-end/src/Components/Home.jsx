@@ -31,7 +31,7 @@ function Home() {
   };
 
   useEffect(() => {
-    axios.get('http://localhost:3000/posts')
+    axios.get('https://s50-weirdest-songs-ever-1.onrender.com/posts')
       .then(response => {
         setPosts(response.data);
       })
@@ -39,7 +39,7 @@ function Home() {
         console.log(err);
       });
 
-    axios.get('http://localhost:3000/users')
+    axios.get('https://s50-weirdest-songs-ever-1.onrender.com/users')
       .then(response => {
         setUsers(response.data);
       })
@@ -148,19 +148,18 @@ function Home() {
           </div>
           <center>
             <hr className='bg-gray mt-6 mb-6 w-3/4' />
-            <h1 className='suggestion-title mb-6'>Suggested for you</h1>
+            <h1 className='suggestion-title mb-6'>Other users</h1>
           </center>
           <div className=' suggestion-scroll h-3/4 overflow-scroll p-2   rounded-lg  '>
             {users.map((user, index) => {
               return (
-                <div key={index} className="mb-5 cm-panel profile-panel bg-white border  p-8 boder rounded-md flex items-center justify-between h-20">
+                <div key={index} className="mb-5 cm-panel profile-panel bg-white border  p-8 boder rounded-md flex items-center  h-20">
                   <div className="profile-img w-14 h-14 rounded-full flex justify-center items-center overflow-hidden">
                     <img src={profileImg} alt="Img" />
                   </div>
                   <div className='profile-img-name flex items-center justify-between'>
-                    <h1 className='profile-name ml-2'>{user.username}</h1>
+                    <h1 className='profile-name ml-10'>{user.username}</h1>
                   </div>
-                  <button className='logout-stroke text-blue-500 ' alt='logout'>+</button>
                 </div>
               )
             })}
