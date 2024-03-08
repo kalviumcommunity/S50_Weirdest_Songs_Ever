@@ -27,7 +27,7 @@ function UpdatePost() {
     };
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/posts/${id}`)
+        axios.get(`https://s50-weirdest-songs-ever-1.onrender.com/posts/${id}`)
             .then(response => {
                 setPost(response.data);
                 setValue('songTitle', response.data.songTitle);
@@ -46,7 +46,7 @@ function UpdatePost() {
         const embeddedVideoUrl = getEmbeddedVideoUrl(imageVideo);
         const updatedPost = { songTitle, artist, releaseYear, imageVideo: embeddedVideoUrl, genre };
     
-        axios.put(`http://localhost:3000/posts/${id}`, updatedPost)
+        axios.put(`https://s50-weirdest-songs-ever-1.onrender.com/posts/${id}`, updatedPost)
             .then(response => {
                 console.log(response);
                 setIsSubmitted(true); 

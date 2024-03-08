@@ -14,7 +14,7 @@ function ManagePosts() {
     const userData = cookieUserData ? JSON.parse(cookieUserData) : null;
 
     useEffect(() => {
-        axios.get('http://localhost:3000/posts')
+        axios.get('https://s50-weirdest-songs-ever-1.onrender.com/posts')
             .then(response => {
                 setPosts(response.data);
                 const filtered = response.data.filter(post => post.username === userData.username);
@@ -26,7 +26,7 @@ function ManagePosts() {
     }, [userData.username]);
 
     const handleDelete = () => {
-        axios.delete(`http://localhost:3000/posts/${deletePostId}`)
+        axios.delete(`https://s50-weirdest-songs-ever-1.onrender.com/posts/${deletePostId}`)
             .then(response => {
                 console.log(response);
                 setFilteredPosts(filteredPosts.filter(post => post._id !== deletePostId));
