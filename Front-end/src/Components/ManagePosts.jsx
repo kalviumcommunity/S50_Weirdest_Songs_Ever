@@ -66,54 +66,60 @@ function ManagePosts() {
                 <div className='main-panel main-panel2 '>
                     <center>
                         <h2 className="register-head mb-5">Your posts</h2>
-                        {filteredPosts.map((data, index) => {
-                            return (
-                                <div className="posts posts2 border flex flex-col mb-10 p-10" key={index}>
-                                    <div className=' top-opt flex justify-between items-center'>
-                                        <div className=''>
-                                            <h1 className='post-title font-bold'>{data.songTitle}</h1>
-                                            <h3 className='post-username mb-5'>{data.username}</h3>
-                                        </div>
-                                        <div>
-                                            <div className="post-top mb-5 rounded text-white p-3 flex items-center  justify-between">
-                                                <h1><strong>{data.genre}</strong></h1>
+                        {filteredPosts.length === 0 ? (
+                            <div className='  w-3/4  mt-20 flex justify-center items-center'>
+                                <h1 className=''>You haven't posted yet</h1>
+                            </div>
+                        ) : (
+                            filteredPosts.map((data, index) => {
+                                return (
+                                    <div className="posts posts2 border flex flex-col mb-10 p-10" key={index}>
+                                        <div className=' top-opt flex justify-between items-center'>
+                                            <div className=''>
+                                                <h1 className='post-title font-bold'>{data.songTitle}</h1>
+                                                <h3 className='post-username mb-5'>{data.username}</h3>
                                             </div>
-                                        </div>
-                                    </div>
-
-                                    <div className='flex justify-between'>
-                                        <iframe width="540" height="304" src={data.imageVideo} title="video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
-                                        <div className='flex flex-col update-opt'>
-                                            <Link to={`/edit/${data._id}`}>
-                                                <button className="update-btn py-3 px-5 rounded bg-blue-900 text-white font-bold hover:bg-blue-600">Edit</button>
-                                            </Link>
-                                            <button onClick={() => {
-                                                setShowDeleteConfirmation(true);
-                                                setDeletePostId(data._id);
-                                            }} className="update-btn py-3 px-5 rounded bg-red-500 text-white font-bold hover:bg-red-400 mt-2">Delete</button>
-                                        </div>
-                                    </div>
-
-                                    {showDeleteConfirmation && (
-                                        <div>
-                                            <div className="overlay"></div>
-                                            <div className="border delete-popup logout-popup rounded flex flex-col justify-around ">
-                                                <h2 className='mb-7'>Are you sure you want to delete your post?</h2>
-                                                <div>
-                                                    <button onClick={handleDelete} className='py-3 px-5 mr-5 rounded bg-red-500 text-white font-bold hover:bg-red-400'>Yes</button>
-                                                    <button onClick={() => setShowDeleteConfirmation(false)} className='py-3 px-5 ml-5 border rounded  text-black font-bold'>No</button>
+                                            <div>
+                                                <div className="post-top mb-5 rounded text-white p-3 flex items-center  justify-between">
+                                                    <h1><strong>{data.genre}</strong></h1>
                                                 </div>
                                             </div>
                                         </div>
-                                    )}
 
-                                    <div className="post-options bg-gray-700 rounded text-white p-3 flex items-center  justify-between  mt-5">
-                                        <h1>Artist: <strong>{data.artist}</strong></h1>
-                                        <h1>Release Year: <strong>{data.releaseYear}</strong></h1>
+                                        <div className='flex justify-between'>
+                                            <iframe width="540" height="304" src={data.imageVideo} title="video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                                            <div className='flex flex-col update-opt'>
+                                                <Link to={`/edit/${data._id}`}>
+                                                    <button className="update-btn py-3 px-5 rounded bg-blue-900 text-white font-bold hover:bg-blue-600">Edit</button>
+                                                </Link>
+                                                <button onClick={() => {
+                                                    setShowDeleteConfirmation(true);
+                                                    setDeletePostId(data._id);
+                                                }} className="update-btn py-3 px-5 rounded bg-red-500 text-white font-bold hover:bg-red-400 mt-2">Delete</button>
+                                            </div>
+                                        </div>
+
+                                        {showDeleteConfirmation && (
+                                            <div>
+                                                <div className="overlay"></div>
+                                                <div className="border delete-popup logout-popup rounded flex flex-col justify-around ">
+                                                    <h2 className='mb-7'>Are you sure you want to delete your post?</h2>
+                                                    <div>
+                                                        <button onClick={handleDelete} className='py-3 px-5 mr-5 rounded bg-red-500 text-white font-bold hover:bg-red-400'>Yes</button>
+                                                        <button onClick={() => setShowDeleteConfirmation(false)} className='py-3 px-5 ml-5 border rounded  text-black font-bold'>No</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        <div className="post-options bg-gray-700 rounded text-white p-3 flex items-center  justify-between  mt-5">
+                                            <h1>Artist: <strong>{data.artist}</strong></h1>
+                                            <h1>Release Year: <strong>{data.releaseYear}</strong></h1>
+                                        </div>
                                     </div>
-                                </div>
-                            );
-                        })}
+                                );
+                            })
+                        )}
                     </center>
                 </div>
             </div>
