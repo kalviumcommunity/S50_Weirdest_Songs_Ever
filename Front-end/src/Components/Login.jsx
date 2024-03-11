@@ -8,13 +8,12 @@ import LogoW from '../../assets/WSLogowhite.png'
 
 function Login() {
 
-    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [loginStatus, setLoginStatus] = useState(null);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
 
     const onSubmit = (data) => {
         const { email, password } = data;
-        setIsSubmitted(true);
         axios.get('https://s50-weirdest-songs-ever-1.onrender.com/users')
             .then(response => {
                 const users = response.data;
@@ -24,14 +23,14 @@ function Login() {
                     const dataString = JSON.stringify(matchedUser);
                     Cookies.set('userData', dataString);
 
-                    console.log('success')
+                    console.log('success');
+                    setLoginStatus('success');
                     setTimeout(() => {
-                        setIsSubmitted(true);
                         navigate('/home');
                     }, 1000);
 
                 } else {
-                    setIsSubmitted(false);
+                    setLoginStatus('failure');
                     console.log("Invalid email or password");
                 }
             })
@@ -40,28 +39,31 @@ function Login() {
             });
     };
 
-
     return (
         <div>
-            <nav className="nav  flex justify-center items-center border  ">
+            <nav className="nav flex justify-center items-center border">
                 <img className='logo h-10' src={LogoW} alt="" />
             </nav>
 
-
-            <div className="form-main   flex flex-col justify-center items-center ">
-
-
+            <div className="form-main flex flex-col justify-center items-center ">
                 <center>
                     <form className="" onSubmit={handleSubmit(onSubmit)}>
 
-                        {isSubmitted && !Object.keys(errors).length && (
-                            <div className="pop p-3 bg-green-500 text-white  rounded mb-5">
+                        {loginStatus === 'success' && (
+                            <div className="pop p-3 bg-green-500 text-white rounded mb-5">
                                 <p className="registered-heading">Login successful</p>
                             </div>
                         )}
 
-                        <h2 className="register-head">Login to your account</h2>
+                        {loginStatus === 'failure' && (
+                            <div className="pop p-3 bg-red-500 text-white rounded mb-5">
+                                <p className="registered-heading">Login failed</p>
+                            </div>
+                        )}
 
+
+
+                        <h2 className="register-head">Login to your account</h2>
 
                         <label htmlFor="email">Email</label>
                         <input className="form-input" {...register('email', {
@@ -72,7 +74,6 @@ function Login() {
                         })} placeholder="Enter your Email address" id="email" />
                         <br />
                         {errors.email && <span className="error-span">{errors.email.message}</span>}
-
 
                         <label htmlFor="password">Password</label>
                         <input className="form-input" {...register('password', {
@@ -87,21 +88,14 @@ function Login() {
                         <br />
                         {errors.password && <span className="error-span">{errors.password.message}</span>}
 
-
                         <br />
                         <button className="submit-btn rounded">Login</button>
 
                     </form>
-
-
-
                 </center>
-
-
-
             </div>
         </div>
     )
 }
 
-export default Login
+export default Login;
